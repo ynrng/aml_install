@@ -11,14 +11,28 @@ Public install scripts for the Advanced Manipulation Learning (AML) framework.
 
 ### AMLDocker CUDA Preinstallation Setup
 
+You need to have nvidia graphics card. Skip this section if you don't.
+
 1) Install [nvidia container toolkit](https://github.com/NVIDIA/nvidia-docker):
 
 ```
  $ sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
  $ sudo systemctl restart docker
  ```
+2) Install nvidia driver (>= nvidia-418)
 
-2) Install [nvidia-docker2](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)):
+  * Recommended method:
+
+  ```
+  sudo add-apt-repository ppa:graphics-drivers/ppa
+  sudo apt update
+  
+  ```
+
+  Then, on Ubuntu from the menu / Dash, click on the "Additional Drivers" and on the tab with the same name, select the driver you want to use, and "Apply changes". Wait until the driver is downloaded and installed, and reboot.
+
+
+3) Install [nvidia-docker2](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)):
 
  ```
  $ sudo apt-get install nvidia-docker2
