@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 ROOT_DIR="$(cd $( dirname ${BASH_SOURCE[0]} ) && pwd)"
 AML_BRANCH=$(cat ${ROOT_DIR}/aml.branch)
 
@@ -7,8 +8,9 @@ ${ROOT_DIR}/fetch_aml.sh $1
 AML_PATH=$(cat $ROOT_DIR/.aml_path)
 
 cd ${AML_PATH} && git checkout ${AML_BRANCH}
-cd aml_docker
 
+cd aml_scripts
 
-./docker_build.sh indigo
-./build_aml.sh dev:indigo
+./install_melodic_deps.sh
+
+source setup_rospkg_deps.sh

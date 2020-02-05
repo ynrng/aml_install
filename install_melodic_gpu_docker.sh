@@ -11,5 +11,5 @@ cd ${AML_PATH} && git checkout ${AML_BRANCH}
 cd aml_docker
 
 
-./docker_build.sh indigo-cuda
-./build_aml.sh dev:indigo-cuda
+./docker_build.sh melodic-cuda
+./build_aml.sh dev:melodic-cuda
