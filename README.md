@@ -13,13 +13,7 @@ Public install scripts for the Advanced Manipulation Learning (AML) framework.
 
 You need to have nvidia graphics card. Skip this section if you don't.
 
-1) Install [nvidia container toolkit](https://github.com/NVIDIA/nvidia-docker):
-
-```
- $ sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
- $ sudo systemctl restart docker
- ```
-2) Install nvidia driver (>= nvidia-418)
+1) Install nvidia driver (>= nvidia-418)
 
   * Recommended method:
 
@@ -32,11 +26,25 @@ You need to have nvidia graphics card. Skip this section if you don't.
   Then, on Ubuntu from the menu / Dash, click on the "Additional Drivers" and on the tab with the same name, select the driver you want to use, and "Apply changes". Wait until the driver is downloaded and installed, and reboot.
 
 
+
+2) Install [nvidia container toolkit](https://github.com/NVIDIA/nvidia-docker):
+
+```
+ $ sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+ $ sudo systemctl restart docker
+ ```
+
 3) Install [nvidia-docker2](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)):
 
  ```
- $ sudo apt-get install nvidia-docker2
- $ sudo pkill -SIGHUP dockerd
+# Add the package repositories
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+
  ```
 
 3) To fix the possible errors with audio cards when using Gazebo, add the $USER to the 'audio' group.
