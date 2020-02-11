@@ -58,14 +58,16 @@ sudo systemctl restart docker
 
 The example below sets up a docker image with ubuntu 14.04, GPU acceleration, ROS melodic and all other required dependencies for AML. It creates a default catkin workspace located at `$HOME/Projects/aml_ws`. The host machine does not have to have ROS installed. It only needs to have docker and (optionally) nvidia-docker.
 
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" melodic_gpu_docker`
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" melodic-cuda-python3`
 
 You can choose other docker builds. See list below:
 
-  * melodic_gpu_docker
-  * melodic_docker
-  * kinetic_gpu_docker
-  * kinetic_docker
+  * melodic-cuda
+  * melodic-cuda-python3
+  * melodic
+  * melodic-python3
+  * kinetic-cuda
+  * kinetic
   
 After running the script line above you should be able to see a new image set up on your docker and tagged as `dev:melodic-cuda`. You should be able to list it by doing `docker images`. 
 

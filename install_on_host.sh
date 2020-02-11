@@ -8,7 +8,9 @@ ${ROOT_DIR}/fetch_aml.sh $1
 AML_PATH=$(cat $ROOT_DIR/.aml_path)
 
 cd ${AML_PATH} && git checkout ${AML_BRANCH}
-cd aml_docker
 
-./docker_build.sh kinetic
-./build_aml.sh dev:kinetic
+cd aml_scripts
+
+./install_${ROS_DISTRO}_deps.sh
+
+source setup_rospkg_deps.sh

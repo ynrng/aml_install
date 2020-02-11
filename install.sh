@@ -29,17 +29,16 @@ then
 	exit 1
 fi
 
-
 if [ "$INSTALL_FROM_HOST" == "true" ]
 then
 	echo "Local install..."
 	ROOT_DIR="$(cd $( dirname ${BASH_SOURCE[0]} ) && pwd)"
-	${ROOT_DIR}/install_${INSTALL_TYPE}.sh $WORKSPACE_PATH
+	${ROOT_DIR}/install_on_host.sh $WORKSPACE_PATH
 else
 	echo "Curl-based install..."
 	rm -rf /tmp/aml_install
 	git clone --depth 1 -b master https://github.com/justagist/aml_install.git /tmp/aml_install
 	cd /tmp/aml_install
-	./install_${INSTALL_TYPE}.sh $WORKSPACE_PATH
+	./install_docker.sh $INSTALL_TYPE $WORKSPACE_PATH
 fi
 
