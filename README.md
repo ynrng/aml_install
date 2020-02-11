@@ -95,7 +95,7 @@ To open another terminal session into the container, run `./exec_container $(./g
 Alternatively, setup aliases for easier loading of image and opening new terminal session by adding the following lines to your '.bashrc' file:
 
 ```
-function amldocker () { $AML_DIR/aml_docker/bash.sh dev:kinetic-cuda; cd $HOME/Projects/aml_ws/; }
+function amldocker () { $AML_DIR/aml_docker/bash.sh dev:<NAME_OF_DOCKER_BUILD_CHOSEN>; cd $AML_DIR/../../; }
 function newdockterm (){ $AML_DIR/aml_docker/exec_container.sh $($AML_DIR/aml_docker/get_containerId.sh); cd $AML_DIR/../../; }
 ```
 
