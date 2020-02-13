@@ -3,6 +3,8 @@ Public install scripts for the Advanced Manipulation Learning (AML) framework.
 
 ## Setting Up 
 
+0. If your network is behind a proxy, make sure the instructions [here](https://gist.github.com/justagist/7b544626136537774961c5c5f563d18d) are followed for proper installation of AML Docker.
+
 1. Install Docker CE (v >= 19.0), see [installation instructions](https://docs.docker.com/engine/installation/).
 
   * Also perform the [post installation instructions](https://docs.docker.com/engine/installation/linux/linux-postinstall/), so that docker can be run without requiring root privileges by a non-root user. (this is optional, otherwise, scripts must be run as root)
@@ -30,13 +32,6 @@ You need to have nvidia graphics card. Skip this section if you don't.
 2) Install [nvidia container toolkit](https://github.com/NVIDIA/nvidia-docker):
 
 ```
- $ sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
- $ sudo systemctl restart docker
- ```
-
-3) Install [nvidia-docker2](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)):
-
- ```
 # Add the package repositories
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
@@ -44,12 +39,15 @@ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.li
 
 sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
 sudo systemctl restart docker
-
  ```
 
-3) To fix the possible errors with audio cards when using Gazebo, add the $USER to the 'audio' group.
+3) Install [nvidia-docker2](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)):
 
-`$sudo usermod -aG audio $USER`
+ ```
+sudo apt-get install nvidia-docker2
+sudo pkill -SIGHUP dockerd
+
+ ```
 
 ### Building AML Docker
 
@@ -58,14 +56,14 @@ sudo systemctl restart docker
 
 The example below sets up a docker image with ubuntu 14.04, GPU acceleration, ROS melodic and all other required dependencies for AML. It creates a default catkin workspace located at `$HOME/Projects/aml_ws`. The host machine does not have to have ROS installed. It only needs to have docker and (optionally) nvidia-docker.
 
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" melodic-cuda-python3`
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" melodic-cuda`
 
 You can choose other docker builds. See list below:
 
   * melodic-cuda
-  * melodic-cuda-python3
+  * melodic-cuda-python3 (under development; needs AML branch `python3_dev`; not recommended for now)
   * melodic
-  * melodic-python3
+  * melodic-python3 (under development; needs AML branch `python3_dev`; not recommended for now)
   * kinetic-cuda
   * kinetic
   
