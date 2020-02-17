@@ -56,7 +56,14 @@ sudo pkill -SIGHUP dockerd
 
 The example below sets up a docker image with ubuntu 14.04, GPU acceleration, ROS melodic and all other required dependencies for AML. It creates a default catkin workspace located at `$HOME/Projects/aml_ws`. The host machine does not have to have ROS installed. It only needs to have docker and (optionally) nvidia-docker.
 
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" melodic-cuda`
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" <optional keyword arguments> [build-name]`
+
+Keyword arguments:
+
+```
+  $ --workspace <absolute path> : path to create AML workspace (Default: $HOME/Projects/aml_ws)
+  $ --branch <branch name> : AML git branch to use (default 'melodic-dev')
+ ```
 
 You can choose other docker builds. See list below:
 
@@ -99,14 +106,6 @@ function newdockterm (){ $AML_DIR/aml_docker/exec_container.sh $($AML_DIR/aml_do
 
 Any files written to `$HOME/Projects/` or other directories mounted inside the container will be observable from the host machine. The intention is that development can be done on the host machine, but run inside the container.
 
-
-### Alternative options upon building the AML docker
-
-If you want to create a different catkin workspace created for the aml docker, you can run the above command with an additional parameter below:
-
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/eaa3/aml_install/master/install.sh)" melodic_gpu_docker my/path/to-my-catkin-ws`
-
-  * Remember, you do not need to have ROS installed in the host machine. The path for catkin workspace is created in the host so as to make it available for the docker container later, see aml_docker scripts at `$HOME/Projects/aml_ws/src/aml/aml_docker`.
 
 ### Setting up host computer without docker
 
