@@ -15,6 +15,7 @@ fi
 BRANCH="melodic-dev"
 
 while [[ $# -gt 0 ]]; do
+	key="$0"
 	if [ "$INSTALL_FROM_HOST" == "true" ]; then
 		key="$1"
 	fi
