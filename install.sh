@@ -11,8 +11,11 @@ if [ "$key" == "./install.sh" ]
 then
 	INSTALL_FROM_HOST=true
 else
-	shift
+	args=$@
+	vals=( "blank" ${args[@]} )
+	set -- "${vals[@]}"
 fi
+
 
 BRANCH="melodic-dev"
 
