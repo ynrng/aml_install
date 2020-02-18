@@ -12,7 +12,9 @@ then
 	INSTALL_FROM_HOST=true
 else
 	# compatibility with curl-based install
-	set -- $@
+	args=$@
+	vals=( "$0" ${args[@]} )
+	set -- "${vals[@]}"
 fi
 
 
@@ -27,9 +29,9 @@ while [[ $# -gt 0 ]]; do
 	key="$1"
 	value="$2"
 
-	# echo $key
-	# echo $value
-	# echo " "
+	echo $key
+	echo $value
+	echo " "
     case $key in
         -w|--workspace)
         WORKSPACE_PATH="$value"
