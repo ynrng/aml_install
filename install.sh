@@ -13,7 +13,7 @@ then
 else
 	# compatibility with curl-based install
 	args=$@
-	vals=( ${args[@]} )
+	vals=( " " ${args[@]} )
 	set -- "${vals[@]}"
 fi
 
