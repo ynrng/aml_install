@@ -12,8 +12,7 @@ then
 	INSTALL_FROM_HOST=true
 else
 	# compatibility with curl-based install
-	args=$@
-	set -- "${args[@]}"
+	set -- $@
 fi
 
 
