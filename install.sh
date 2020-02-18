@@ -22,6 +22,7 @@ while [[ $# -gt 0 ]]; do
 
 	key="$1"
 	value="$2"
+	echo $key
     case $key in
         -w|--workspace)
         WORKSPACE_PATH="$value"
