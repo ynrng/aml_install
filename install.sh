@@ -10,6 +10,9 @@ key=$0
 if [ "$key" == "./install.sh" ]
 then
 	INSTALL_FROM_HOST=true
+	SHIFT_NEEDED=true
+else
+	SHIFT_NEEDED=false
 fi
 
 BRANCH="melodic-dev"
@@ -20,9 +23,16 @@ BRANCH="melodic-dev"
 
 while [[ $# -gt 0 ]]; do
 
-	key="$1"
-	value="$2"
+	key="$0"
+	value="$1"
+	if [ "$SHIFT_NEEDED" == "true" ];then
+		key="$1"
+		value="$2"
+	fi
+
 	echo $key
+	echo $value
+	echo " "
     case $key in
         -w|--workspace)
         WORKSPACE_PATH="$value"
