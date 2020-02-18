@@ -10,9 +10,8 @@ key=$0
 if [ "$key" == "./install.sh" ]
 then
 	INSTALL_FROM_HOST=true
-	SHIFT_NEEDED=true
 else
-	SHIFT_NEEDED=false
+	shift
 fi
 
 BRANCH="melodic-dev"
@@ -23,12 +22,8 @@ BRANCH="melodic-dev"
 
 while [[ $# -gt 0 ]]; do
 
-	key="$0"
-	value="$1"
-	if [ "$SHIFT_NEEDED" == "true" ];then
-		key="$1"
-		value="$2"
-	fi
+	key="$1"
+	value="$2"
 
 	echo $key
 	echo $value
