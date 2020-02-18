@@ -2,7 +2,7 @@
 
 ROOT_DIR="$(cd $( dirname ${BASH_SOURCE[0]} ) && pwd)"
 CATKIN_WS_PATH=$1
-AML_BRANCH=$(cat aml.branch)
+AML_BRANCH=$2
 SHALLOW_CLONE='n'
 
 if [ -z "$CATKIN_WS_PATH" ]
@@ -39,5 +39,5 @@ fi
 
 git clone ${CLONE_DEPTH} -b ${AML_BRANCH} https://github.com/RobotsLab/AML.git ${AML_ABS_PATH}
 
-
+echo "git clone ${CLONE_DEPTH} -b ${AML_BRANCH} https://github.com/RobotsLab/AML.git ${AML_ABS_PATH}"
 echo ${AML_ABS_PATH} > .aml_path

@@ -14,24 +14,27 @@ fi
 
 BRANCH="melodic-dev"
 
+# echo "$0"
+# echo "$1"
+# echo "$2"
+
 while [[ $# -gt 0 ]]; do
-	key="$0"
-	if [ "$INSTALL_FROM_HOST" == "true" ]; then
-		key="$1"
-	fi
+
+	key="$1"
+	value="$2"
     case $key in
         -w|--workspace)
-        WORKSPACE_PATH="$2"
+        WORKSPACE_PATH="$value"
         shift # past argument
         shift # past value
         ;;
         -b|--aml_branch)
-        BRANCH="$2"
+        BRANCH="$value"
         shift # past argument
         shift # past value
         ;;   
         *)    # unknown option
-        INSTALL_TYPE+=("$1") # save it in an array for later
+        INSTALL_TYPE+=("$key") # save it in an array for later
         shift # past argument
         ;;
     esac
