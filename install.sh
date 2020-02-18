@@ -10,7 +10,7 @@ key=$0
 if [ "$key" == "./install.sh" ]
 then
 	INSTALL_FROM_HOST=true
-else
+	# compatibility with curl-based install
 	args=$@
 	vals=( "blank" ${args[@]} )
 	set -- "${vals[@]}"
@@ -25,8 +25,8 @@ BRANCH="melodic-dev"
 
 while [[ $# -gt 0 ]]; do
 
-	key="$1"
-	value="$2"
+	key="$2"
+	value="$3"
 
 	echo $key
 	echo $value
