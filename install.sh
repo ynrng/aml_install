@@ -10,10 +10,10 @@ key=$0
 if [ "$key" == "./install.sh" ]
 then
 	INSTALL_FROM_HOST=true
+else
 	# compatibility with curl-based install
 	args=$@
-	vals=( "blank" ${args[@]} )
-	set -- "${vals[@]}"
+	set -- "${args[@]}"
 fi
 
 
@@ -25,12 +25,12 @@ BRANCH="melodic-dev"
 
 while [[ $# -gt 0 ]]; do
 
-	key="$2"
-	value="$3"
+	key="$1"
+	value="$2"
 
-	echo $key
-	echo $value
-	echo " "
+	# echo $key
+	# echo $value
+	# echo " "
     case $key in
         -w|--workspace)
         WORKSPACE_PATH="$value"
