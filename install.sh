@@ -19,7 +19,7 @@ fi
 
 
 BRANCH="melodic-dev"
-
+WORKSPACE_PATH="$HOME/Projects/aml_ws/"
 # echo "$0"
 # echo "$1"
 # echo "$2"
@@ -57,7 +57,7 @@ echo "GIT BRANCH: $BRANCH"
 
 if [ "$INSTALL_FROM_HOST" == "true" ] && [ -z $WORKSPACE_PATH ]
 then
-	echo "WORKSPACE_PATH is empty: will prompt to use default, i.e. aml_ws"
+	echo "WORKSPACE_PATH is empty: will prompt to use default, i.e. $WORKSPACE_PATH"
 fi
 
 
