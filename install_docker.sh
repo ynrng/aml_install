@@ -13,4 +13,4 @@ cd aml_docker
 
 
 ./docker_build.sh ${IMAGETYPE}
-./build_aml.sh dev:${IMAGETYPE}
+./build_aml.sh aml:${IMAGETYPE}
