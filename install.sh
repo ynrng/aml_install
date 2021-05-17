@@ -77,7 +77,7 @@ else
 	fi
 	echo "Curl-based install..."
 	rm -rf /tmp/aml_install
-	git clone --depth 1 -b master https://github.com/justagist/aml_install.git /tmp/aml_install
+	git clone --depth 1 -b _noetic_test https://github.com/justagist/aml_install.git /tmp/aml_install
 	cd /tmp/aml_install
 	./install_docker.sh $INSTALL_TYPE $BRANCH $WORKSPACE_PATH
 fi

@@ -79,7 +79,7 @@ Keyword arguments:
 
 ```
   $ --workspace <absolute path> : path to create AML workspace (Default: $HOME/Projects/aml_ws)
-  $ --branch <branch name> : AML git branch to use (default 'melodic-dev')
+  $ --aml_branch <branch name> : AML git branch to use (default 'melodic-dev')
  ```
 
 You can choose other docker builds. See list below:
@@ -102,7 +102,7 @@ Now in the AML docker folder located at `$HOME/Projects/aml_ws/src/aml/aml_docke
 
 This should open a bash shell and spin the container. Check if RVIZ is running in the container by running in the bash shell opened:
 
-```
+```bash
 roscore > /dev/null &
 rosrun rviz rviz
 ```

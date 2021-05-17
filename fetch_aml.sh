@@ -37,7 +37,7 @@ if echo "$SHALLOW_CLONE" | grep -iq "^y" ;then
 	CLONE_DEPTH="--depth 1"
 fi
 
-git clone ${CLONE_DEPTH} -b ${AML_BRANCH} https://github.com/RobotsLab/AML.git ${AML_ABS_PATH}
+git clone ${CLONE_DEPTH} -b ${AML_BRANCH} https://github.com/justagist/AML.git ${AML_ABS_PATH}
 
-echo "git clone ${CLONE_DEPTH} -b ${AML_BRANCH} https://github.com/RobotsLab/AML.git ${AML_ABS_PATH}"
+echo "git clone ${CLONE_DEPTH} -b ${AML_BRANCH} https://github.com/justagist/AML.git ${AML_ABS_PATH}"
 echo ${AML_ABS_PATH} > .aml_path
