@@ -18,8 +18,8 @@ else
 fi
 
 
-BRANCH="melodic-dev"
-WORKSPACE_PATH="$HOME/Projects/aml_ws/"
+BRANCH="yan_exp"
+WORKSPACE_PATH="$HOME/code/aml_ws/"
 # echo "$0"
 # echo "$1"
 # echo "$2"
@@ -42,7 +42,7 @@ while [[ $# -gt 0 ]]; do
         BRANCH="$value"
         shift # past argument
         shift # past value
-        ;;   
+        ;;
         *)    # unknown option
         INSTALL_TYPE+=("$key") # save it in an array for later
         shift # past argument
@@ -68,17 +68,17 @@ then
 	${ROOT_DIR}/install_on_host.sh $BRANCH $WORKSPACE_PATH
 else
 	if [ -z "$INSTALL_TYPE" ] || [ "$INSTALL_TYPE" == "bash" ]
-	then 
+	then
 	    echo "usage: ./install.sh <install-options> <image-type>"
-	    echo "example: ./install.sh --workspace $HOME/Projects/ melodic-dev"
+	    echo "example: ./install.sh --workspace $HOME/code/ melodic-dev"
 	    echo "install options: --branch: AML git branch"
-	    echo "                 --workspace: absolute path to create workspace (Default: $HOME/Projects/aml_ws)"
+	    echo "                 --workspace: absolute path to create workspace (Default: $HOME/code/aml_ws)"
 		exit 1
 	fi
 	echo "Curl-based install..."
-	rm -rf /tmp/aml_install
-	git clone --depth 1 -b master https://github.com/justagist/aml_install.git /tmp/aml_install
-	cd /tmp/aml_install
+	# rm -rf /tmp/aml_install
+	# git clone --depth 1 -b master https://github.com/justagist/aml_install.git /tmp/aml_install
+	# cd /tmp/aml_install
+	cd ~/code/aml_install
 	./install_docker.sh $INSTALL_TYPE $BRANCH $WORKSPACE_PATH
 fi
-
