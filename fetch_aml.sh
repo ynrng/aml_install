@@ -7,11 +7,11 @@ SHALLOW_CLONE='n'
 
 if [ -z "$CATKIN_WS_PATH" ]
 then
-    
+
     echo "usage: ./fetch_aml.sh [<optional-path-to-catkin-workspace>]"
-    CATKIN_WS_PATH=${HOME}/Projects/aml_ws/
+    CATKIN_WS_PATH=${HOME}/code/aml_ws/
 	echo "This script will create a default catkin workpace at ${CATKIN_WS_PATH}, proceed? (y/n)"
-	
+
 	read answer
 	if echo "$answer" | grep -iq "^y" ;then
 		echo "Fetching AML..."
@@ -37,7 +37,7 @@ if echo "$SHALLOW_CLONE" | grep -iq "^y" ;then
 	CLONE_DEPTH="--depth 1"
 fi
 
-git clone ${CLONE_DEPTH} -b ${AML_BRANCH} https://github.com/justagist/AML.git ${AML_ABS_PATH}
+git clone ${CLONE_DEPTH} -b ${AML_BRANCH} git@github.com:IRUOB/AML.git ${AML_ABS_PATH}
 
-echo "git clone ${CLONE_DEPTH} -b ${AML_BRANCH} https://github.com/justagist/AML.git ${AML_ABS_PATH}"
+echo "git clone ${CLONE_DEPTH} -b ${AML_BRANCH} git@github.com:IRUOB/AML.git ${AML_ABS_PATH}"
 echo ${AML_ABS_PATH} > .aml_path

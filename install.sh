@@ -18,8 +18,8 @@ else
 fi
 
 
-BRANCH="melodic-dev"
-WORKSPACE_PATH="$HOME/Projects/aml_ws/"
+BRANCH="noetic-dev"
+WORKSPACE_PATH="$HOME/code/aml_ws/"
 # echo "$0"
 # echo "$1"
 # echo "$2"
@@ -77,7 +77,7 @@ else
 	fi
 	echo "Curl-based install..."
 	rm -rf /tmp/aml_install
-	git clone --depth 1 -b _noetic_test https://github.com/justagist/aml_install.git /tmp/aml_install
+	git clone --depth 1 -b $BRANCH https://github.com/IRUOB/aml_install.git /tmp/aml_install
 	cd /tmp/aml_install
 	./install_docker.sh $INSTALL_TYPE $BRANCH $WORKSPACE_PATH
 fi

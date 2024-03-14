@@ -57,47 +57,50 @@ Once completed, go to [Building AML Docker](#building-aml-docker).
 
 **Recommended method:**
 
-The default (recommended) options will be applied and the library should be fully installed automatically by running one of the following commands. It sets up a docker image with ubuntu 18.04, (optionally GPU acceleration,) ROS melodic and all other required dependencies for AML. It creates a default catkin workspace located at `$HOME/Projects/aml_ws`. The host machine **does not** have to have ROS installed. It only needs to have docker and (optionally) nvidia-docker as described above.
+The default (recommended) options will be applied and the library should be fully installed automatically by running one of the following commands. It sets up a docker image with ubuntu 18.04, (optionally GPU acceleration,) ROS noetic and all other required dependencies for AML. It creates a default catkin workspace located at `$HOME/code/aml_ws`. The host machine **does not** have to have ROS installed. It only needs to have docker and (optionally) nvidia-docker as described above.
 
 NOTE: `sudo` privileges and `github` authentications may be required during installation.
 
 ```
 # Without CUDA:
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" melodic
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/IRUOB/aml_install/master/install.sh)" noetic
 
 # With CUDA (only if you have followed steps mentioned in 'AMLDocker CUDA Preinstallation Setup'):
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" melodic-cuda
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/IRUOB/aml_install/master/install.sh)" noetic-cuda
 ```
 
-After running the script line above you should be able to see a new image set up on your docker and tagged as `dev:melodic-cuda` or `dev:melodic`. You should be able to list it by running `docker images`. Go to [Using the Container](#using-the-container) section for instructions to use the docker container.
+After running the script line above you should be able to see a new image set up on your docker and tagged as `dev:noetic-cuda` or `dev:noetic`. You should be able to list it by running `docker images`. Go to [Using the Container](#using-the-container) section for instructions to use the docker container.
 
 **Advanced Installation Options (for developers)**
 
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/justagist/aml_install/master/install.sh)" <optional keyword arguments> [build-name]`
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/IRUOB/aml_install/master/install.sh)" <optional keyword arguments> [build-name]`
 
 Keyword arguments:
 
 ```
-  $ --workspace <absolute path> : path to create AML workspace (Default: $HOME/Projects/aml_ws)
-  $ --aml_branch <branch name> : AML git branch to use (default 'melodic-dev')
+  $ --workspace <absolute path> : path to create AML workspace (Default: $HOME/code/aml_ws)
+  $ --aml_branch <branch name> : AML git branch to use (default 'noetic-dev')
  ```
 
 You can choose other docker builds. See list below:
 
+  * noetic
+  * noetic-cuda
   * melodic-cuda
-  * melodic-cuda-python3 (under development; needs AML branch `python3_dev`; not supported for now)
+  <!-- * melodic-cuda-python3 (under development; needs AML branch `python3_dev`; not supported for now) -->
   * melodic
-  * melodic-python3 (under development; needs AML branch `python3_dev`; not supported for now)
+  <!-- * melodic-python3 (under development; needs AML branch `python3_dev`; not supported for now) -->
   * kinetic-cuda
   * kinetic
   * indigo (DEPRECATED)
 
 
+
 ### Using the container
 
-Now in the AML docker folder located at `$HOME/Projects/aml_ws/src/aml/aml_docker` you will find a set of scripts that will help you run your docker container, among other examples. For instance, if you want to open a bash shell to the docker container just built, then execute or source the script:
+Now in the AML docker folder located at `$HOME/code/aml_ws/src/aml/aml_docker` you will find a set of scripts that will help you run your docker container, among other examples. For instance, if you want to open a bash shell to the docker container just built, then execute or source the script:
 
-`$HOME/Projects/aml_ws/src/aml/aml_docker/bash.sh dev:<NAME_OF_DOCKER_BUILD_CHOSEN>` 
+`$HOME/code/aml_ws/src/aml/aml_docker/bash.sh dev:<NAME_OF_DOCKER_BUILD_CHOSEN>` 
 (NOTE: image tag is passed as argument to the script).
 
 This should open a bash shell and spin the container. Check if RVIZ is running in the container by running in the bash shell opened:
@@ -125,13 +128,13 @@ function newdockterm (){ $AML_DIR/aml_docker/exec_container.sh $($AML_DIR/aml_do
 
 To exit any container, use `exit` command, or `CTRL+D` keys.
 
-Any files written to `$HOME/Projects/` or other directories mounted inside the container will be observable from the host machine. The intention is that development can be done on the host machine, but run inside the container.
+Any files written to `$HOME/code/` or other directories mounted inside the container will be observable from the host machine. The intention is that development can be done on the host machine, but run inside the container.
 
 ### In-Docker Instructions
 
 Start AML Docker by running `amldocker`, unless it is already running.
 
-If your computer is in the `robot network`, update the files `intera.sh`,`franka.sh` and `baxter.sh` with your IP. By running `source <file_name>` using either of these files, you will be connected to the robot (for the Franka robot, make sure you have followed the instructions from the [franka_ros_interface](https://github.com/justagist/franka_ros_interface) repository for connecting to the robot).
+If your computer is in the `robot network`, update the files `intera.sh`,`franka.sh` and `baxter.sh` with your IP. By running `source <file_name>` using either of these files, you will be connected to the robot (for the Franka robot, make sure you have followed the instructions from the [franka_ros_interface](https://github.com/IRUOB/franka_ros_interface) repository for connecting to the robot).
 
 AML library simulators can be used regardless of whether you are in the robot network. All the above files can be run using the `sim` argument to enter the simulation environment for the robots (eg: `source intera.sh sim`). Sourcing any of the files in simulation will allow you to run all the robots in simulation.
 
@@ -147,6 +150,6 @@ These simulators should each mimic the behaviour of the real robot. This can be 
 
 ### Setting up host computer without docker **(Deprecated; Not recommended)**
 
-The example below assumes a fresh install of ubuntu 14.04. It installs ROS melodic and all other required dependencies for AML (obs.: without GPU acceleration).
+The example below assumes a fresh install of ubuntu 14.04. It installs ROS noetic and all other required dependencies for AML (obs.: without GPU acceleration).
 
-`bash -c "$(curl https://raw.githubusercontent.com/justagist/aml_install/master/install_melodic_host.sh)"`
+`bash -c "$(curl https://raw.githubusercontent.com/IRUOB/aml_install/master/install_on_host.sh)"`
