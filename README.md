@@ -63,7 +63,7 @@ NOTE: `sudo` privileges and `github` authentications may be required during inst
 
 ```
 # Without CUDA:
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/IRUOB/aml_install/master/install.sh)" noetic
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/IRUOB/aml_install/noetic-dev/install.sh)" noetic
 
 # With CUDA (only if you have followed steps mentioned in 'AMLDocker CUDA Preinstallation Setup'):
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/IRUOB/aml_install/master/install.sh)" noetic-cuda
