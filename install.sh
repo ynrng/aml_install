@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# INSTALL_TYPE=
+# usage:
+# ./install.sh -w /code/aml_ws/ -b noetic-dev
+# bash -c "$(curl https://raw.githubusercontent.com/ynrng/aml_install/master/install_docker.sh)" -w /code/aml_ws/ -b noetic-dev bash
+
+INSTALL_TYPE="noetic"
 INSTALL_FROM_HOST=false
+WORKSPACE_PATH="$HOME/code/aml_ws/"
 
 # checking if this script is being run from the curl-based install script or locally from host machine
 # parameter base is different if run locally
@@ -18,8 +23,6 @@ else
 fi
 
 
-BRANCH="noetic-dev"
-WORKSPACE_PATH="$HOME/code/aml_ws/"
 # echo "$0"
 # echo "$1"
 # echo "$2"
@@ -39,16 +42,26 @@ while [[ $# -gt 0 ]]; do
         shift # past value
         ;;
         -b|--aml_branch)
-        BRANCH="$value"
+        INSTALL_TYPE="$value"
         shift # past argument
         shift # past value
-        ;;   
-        *)    # unknown option
-        INSTALL_TYPE+=("$key") # save it in an array for later
-        shift # past argument
         ;;
+        # *)    # unknown option
+        # INSTALL_TYPE+=("$key") # save it in an array for later
+        # shift # past argument
+        # ;;
+		-*|--*=) # unsupported flags
+		echo "Error: Unsupported flag $1" >&2
+		exit 1
+		;;
+		*) # preserve positional arguments
+		PARAMS="$PARAMS $key"
+		shift
+		;;
     esac
 done
+
+BRANCH="${INSTALL_TYPE}-dev"
 
 echo "INSTALL_TYPE: $INSTALL_TYPE"
 echo "WORKSPACE_PATH: $WORKSPACE_PATH"
@@ -65,20 +78,21 @@ if [ "$INSTALL_FROM_HOST" == "true" ]
 then
 	echo "Local install..."
 	ROOT_DIR="$(cd $( dirname ${BASH_SOURCE[0]} ) && pwd)"
-	${ROOT_DIR}/install_on_host.sh $BRANCH $WORKSPACE_PATH
+	echo "Running... $ROOT_DIR/install_on_host.sh $BRANCH $WORKSPACE_PATH"
+	$ROOT_DIR/install_docker.sh $INSTALL_TYPE $BRANCH $WORKSPACE_PATH
 else
 	if [ -z "$INSTALL_TYPE" ] || [ "$INSTALL_TYPE" == "bash" ]
-	then 
+	then
 	    echo "usage: ./install.sh <install-options> <image-type>"
-	    echo "example: ./install.sh --workspace $HOME/Projects/ melodic-dev"
+	    echo "example: ./install.sh -w $HOME/code/ -b melodic-dev"
 	    echo "install options: --branch: AML git branch"
-	    echo "                 --workspace: absolute path to create workspace (Default: $HOME/Projects/aml_ws)"
+	    echo "                 --workspace: absolute path to create workspace (Default: $HOME/code/aml_ws)"
 		exit 1
 	fi
 	echo "Curl-based install..."
 	rm -rf /tmp/aml_install
-	git clone --depth 1 -b $BRANCH https://github.com/IRUOB/aml_install.git /tmp/aml_install
+	git clone --depth 1 -b $BRANCH https://github.com/ynrng/aml_install.git /tmp/aml_install
 	cd /tmp/aml_install
+	echo "Running... ${./install_docker.sh $INSTALL_TYPE $BRANCH $WORKSPACE_PATH}"
 	./install_docker.sh $INSTALL_TYPE $BRANCH $WORKSPACE_PATH
 fi
-

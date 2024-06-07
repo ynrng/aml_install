@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Starting>>> install_docker.sh"
+
 IMAGETYPE=$1
 
 ROOT_DIR="$(cd $( dirname ${BASH_SOURCE[0]} ) && pwd)"
@@ -12,5 +14,6 @@ cd ${AML_PATH} && git checkout $2
 cd aml_docker
 
 
+echo "Running>>> ./docker_build.sh ${IMAGETYPE}"
 ./docker_build.sh ${IMAGETYPE}
-./build_aml.sh aml:${IMAGETYPE}
+./build_aml.sh aml:${IMAGETYPE} $AML_PATH

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Starting>>> fetch_aml.sh"
+
 ROOT_DIR="$(cd $( dirname ${BASH_SOURCE[0]} ) && pwd)"
 CATKIN_WS_PATH=$1
 AML_BRANCH=$2
@@ -30,14 +32,14 @@ mkdir -p ${CATKIN_WS_PATH}/src
 
 CATKIN_WS_ABS_PATH="$( cd "$( dirname "${CATKIN_WS_PATH}/." )" && pwd )"
 AML_ABS_PATH="${CATKIN_WS_ABS_PATH}/src/aml"
-echo ${AML_ABS_PATH}
+echo "Change directory->${AML_ABS_PATH}"
 
 CLONE_DEPTH=""
 if echo "$SHALLOW_CLONE" | grep -iq "^y" ;then
 	CLONE_DEPTH="--depth 1"
 fi
 
-git clone ${CLONE_DEPTH} -b ${AML_BRANCH} git@github.com:IRUOB/AML.git ${AML_ABS_PATH}
+git clone ${CLONE_DEPTH} -b ${AML_BRANCH} git@github.com:ynrng/AML.git ${AML_ABS_PATH}
 
-echo "git clone ${CLONE_DEPTH} -b ${AML_BRANCH} git@github.com:IRUOB/AML.git ${AML_ABS_PATH}"
+echo "git clone ${CLONE_DEPTH} -b ${AML_BRANCH} git@github.com:ynrng/AML.git ${AML_ABS_PATH}"
 echo ${AML_ABS_PATH} > .aml_path

@@ -2,7 +2,7 @@
 
 Public install scripts for the IRLab Advanced Manipulation Learning (AML) framework.
 
-## Setting Up 
+## Setting Up
 
 0. If your network is behind a proxy, make sure the instructions [here](https://gist.github.com/justagist/7b544626136537774961c5c5f563d18d) are followed for proper installation of AML Docker.
 
@@ -10,7 +10,7 @@ Public install scripts for the IRLab Advanced Manipulation Learning (AML) framew
 
   * Also perform the [post installation instructions](https://docs.docker.com/engine/installation/linux/linux-postinstall/), so that docker can be run without requiring root privileges by a non-root user. (this is optional but recommended, otherwise scripts will have to be run as root)
 
-2. (optional) If you have an NVidia GPU and want to use GPU acceleration/CUDA in docker (required mainly for tensorflow and for boosting some visualisers), follow [these instructions](#amldocker-cuda-preinstallation-setup) before setting up the AML Docker. If not, go to [Building AML Docker](#building-aml-docker). 
+2. (optional) If you have an NVidia GPU and want to use GPU acceleration/CUDA in docker (required mainly for tensorflow and for boosting some visualisers), follow [these instructions](#amldocker-cuda-preinstallation-setup) before setting up the AML Docker. If not, go to [Building AML Docker](#building-aml-docker).
 
 ### AMLDocker CUDA Preinstallation Setup
 
@@ -23,7 +23,7 @@ You need to have nvidia graphics card. Skip this section if you don't.
   ```
   sudo add-apt-repository ppa:graphics-drivers/ppa
   sudo apt update
-  
+
   ```
 
   Then, on Ubuntu from the menu / Dash, click on the "Additional Drivers" and on the tab with the same name, select the driver you want to use, and "Apply changes". Wait until the driver is downloaded and installed, and reboot.
@@ -100,7 +100,7 @@ You can choose other docker builds. See list below:
 
 Now in the AML docker folder located at `$HOME/code/aml_ws/src/aml/aml_docker` you will find a set of scripts that will help you run your docker container, among other examples. For instance, if you want to open a bash shell to the docker container just built, then execute or source the script:
 
-`$HOME/code/aml_ws/src/aml/aml_docker/bash.sh dev:<NAME_OF_DOCKER_BUILD_CHOSEN>` 
+`$HOME/code/aml_ws/src/aml/aml_docker/bash.sh dev:<NAME_OF_DOCKER_BUILD_CHOSEN>`
 (NOTE: image tag is passed as argument to the script).
 
 This should open a bash shell and spin the container. Check if RVIZ is running in the container by running in the bash shell opened:
@@ -150,6 +150,6 @@ These simulators should each mimic the behaviour of the real robot. This can be 
 
 ### Setting up host computer without docker **(Deprecated; Not recommended)**
 
-The example below assumes a fresh install of ubuntu 14.04. It installs ROS noetic and all other required dependencies for AML (obs.: without GPU acceleration).
+The example below assumes a fresh install of ubuntu 20.04. It installs ROS noetic and all other required dependencies for AML (obs.: without GPU acceleration).
 
-`bash -c "$(curl https://raw.githubusercontent.com/IRUOB/aml_install/master/install_on_host.sh)"`
+`bash -c "$(curl https://raw.githubusercontent.com/IRUOB/aml_install/master/instal.sh)"`
