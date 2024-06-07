@@ -2,7 +2,7 @@
 
 # usage:
 # ./install.sh -w /code/aml_ws/ -b noetic-dev
-# bash -c "$(curl https://raw.githubusercontent.com/ynrng/aml_install/master/install_docker.sh)" -w /code/aml_ws/ -b noetic-dev bash
+# bash -c "$(curl https://raw.githubusercontent.com/ynrng/aml_install/noetic-dev/install.sh)" -w /code/aml_ws/ -b noetic bash
 
 INSTALL_TYPE="noetic"
 INSTALL_FROM_HOST=false
@@ -90,9 +90,10 @@ else
 		exit 1
 	fi
 	echo "Curl-based install..."
-	rm -rf /tmp/aml_install
-	git clone --depth 1 -b $BRANCH https://github.com/ynrng/aml_install.git /tmp/aml_install
-	cd /tmp/aml_install
-	echo "Running... ${./install_docker.sh $INSTALL_TYPE $BRANCH $WORKSPACE_PATH}"
+	mkdir -p $WORKSPACE_PATH && cd $WORKSPACE_PATH
+	rm -rf aml_install
+	git clone --depth 1 -b $BRANCH https://github.com/ynrng/aml_install.git aml_install
+	cd aml_install
+	echo "Running... ./install_docker.sh" $INSTALL_TYPE $BRANCH $WORKSPACE_PATH
 	./install_docker.sh $INSTALL_TYPE $BRANCH $WORKSPACE_PATH
 fi
