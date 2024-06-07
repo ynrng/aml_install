@@ -16,4 +16,5 @@ cd aml_docker
 
 echo "Running>>> ./docker_build.sh ${IMAGETYPE}"
 ./docker_build.sh ${IMAGETYPE}
+echo "Running>>> ./docker_build.sh ${IMAGETYPE} "$AML_PATH
 ./build_aml.sh aml:${IMAGETYPE} $AML_PATH

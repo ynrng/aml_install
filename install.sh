@@ -6,7 +6,7 @@
 
 INSTALL_TYPE="noetic"
 INSTALL_FROM_HOST=false
-WORKSPACE_PATH="$HOME/code/aml_ws/"
+WORKSPACE_PATH="$HOME/code/aml_ws"
 
 # checking if this script is being run from the curl-based install script or locally from host machine
 # parameter base is different if run locally
@@ -90,7 +90,7 @@ else
 		exit 1
 	fi
 	echo "Curl-based install..."
-	mkdir -p $WORKSPACE_PATH && cd $WORKSPACE_PATH
+	mkdir -p $WORKSPACE_PATH && cd $WORKSPACE_PATH && cd ..
 	rm -rf aml_install
 	git clone --depth 1 -b $BRANCH https://github.com/ynrng/aml_install.git aml_install
 	cd aml_install

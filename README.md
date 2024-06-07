@@ -2,6 +2,14 @@
 
 Public install scripts for the IRLab Advanced Manipulation Learning (AML) framework.
 
+## prequisition
+1. github setup with ssh key.
+2. docker [installed](https://docs.docker.com/desktop/install/ubuntu/) and logined in ( sudo needed)
+  ```sh
+ sudo docker login --username xxx --password xxx
+  ```
+3. did [post docker setup](https://docs.docker.com/engine/install/linux-postinstall/) to allow docker run without sudo or run this [script](./post_docker.sh)
+
 ## Setting Up
 
 0. If your network is behind a proxy, make sure the instructions [here](https://gist.github.com/justagist/7b544626136537774961c5c5f563d18d) are followed for proper installation of AML Docker.
@@ -151,5 +159,8 @@ These simulators should each mimic the behaviour of the real robot. This can be 
 ### Setting up host computer without docker **(Deprecated; Not recommended)**
 
 The example below assumes a fresh install of ubuntu 20.04. It installs ROS noetic and all other required dependencies for AML (obs.: without GPU acceleration).
+> Note: -w is necessary for curl based installation as $HOME is not available in this situation.
 
-`bash -c "$(curl https://raw.githubusercontent.com/IRUOB/aml_install/master/instal.sh)"`
+`sh
+bash -c "$(curl https://raw.githubusercontent.com/ynrng/aml_install/noetic-dev/install.sh)" -b noetic -w $HOME/code/aml_ws bash
+`
